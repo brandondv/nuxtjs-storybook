@@ -13,11 +13,4 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {},
-  render() {
-    return {
-      setup() {
-        return () => h(Suspense, h(RegularWithIslandComponent))
-      },
-    }
-  },
 }

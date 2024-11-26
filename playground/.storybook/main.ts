@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook-vue/nuxt'
 import Inspect from 'vite-plugin-inspect'
+import { h, Suspense } from 'vue'
 
 const config: StorybookConfig = {
   stories: [
@@ -29,5 +30,14 @@ const config: StorybookConfig = {
     )
     return config
   },
+  decorators: [
+    (story) => {
+      return {
+        setup() {
+          return () => h(Suspense, {}, [h(story())])
+        },
+      }
+    },
+  ],
 }
 export default config
