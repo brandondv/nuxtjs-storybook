@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { h, Suspense } from 'vue'
 
 import RegularWithIslandComponent from '../components/RegularWithIslandComponent.vue'
 
@@ -12,4 +13,11 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {},
+  render() {
+    return {
+      setup() {
+        return () => h(Suspense, h(RegularWithIslandComponent))
+      },
+    }
+  },
 }
