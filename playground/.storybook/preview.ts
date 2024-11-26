@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/vue3'
+import { h, Suspense } from 'vue'
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +11,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (story) => {
+      return {
+        setup() {
+          return () => h(Suspense, {}, [h(story())])
+        },
+      }
+    },
+  ],
 }
 
 export default preview
